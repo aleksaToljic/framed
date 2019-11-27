@@ -13,12 +13,16 @@
 <script>
   function receiveMessage(event)
 {
+  if(event && event.source.location.origin !== 'http://localhost:3001')
+    return;
+  else {
   console.log(event)
   var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
     hasCookie = true
-  window.source.postMessage(hasCookie, event.origin);
+  window.parent.postMessage(hasCookie, event.origin);
+  }
 }
 window.addEventListener("message", receiveMessage, false);
 </script>
