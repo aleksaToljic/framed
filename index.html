@@ -13,8 +13,8 @@
 <script>
   function receiveMessage(event)
 {
-  console.log(event.source, event.source.location, event)
-  if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins !== 'http://localhost:3001')
+  console.log(event.source, event.source.location.ancestorOrigins[0], event)
+  if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
     return;
   else {
   console.log(event)
