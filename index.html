@@ -11,29 +11,24 @@
 <h3>Where are my cookies?</h3>
 
 <script>
-  var popup = window.open(/* popup details */);
+  function receiveMessage(event)
+    {
+        // Do we trust the sender of this message?
+        if (event.origin !== "http://localhost:3001")
+            return;
 
-// When the popup has fully loaded, if not blocked by a popup blocker:
+        // event.source is window.opener
+        // event.data is "hello there!"
 
-// This does nothing, assuming the window hasn't changed its location.
-popup.postMessage("The user is 'bob' and the password is 'secret'",
-                  "https://secure.example.net");
+        // Assuming you've verified the origin of the received message (which
+        // you must do in any case), a convenient idiom for replying to a
+        // message is to call postMessage on event.source and provide
+        // event.origin as the targetOrigin.
+        event.source.postMessage("hi there yourself!  the secret response " +
+            "is: rheeeeet!",
+            event.origin);
+    }
 
-// This will successfully queue a message to be sent to the popup, assuming
-// the window hasn't changed its location.
-popup.postMessage("hello there!", "http://example.com");
-
-function receiveMessage(event)
-{
-  // Do we trust the sender of this message?  (might be
-  // different from what we originally opened, for example).
-  console.log('aaaaa2');
-  if (event.origin !== "http://example.com")
-    return;
-
-  // event.source is popup
-  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
-}
 window.addEventListener("message", receiveMessage, false);
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
