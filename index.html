@@ -11,13 +11,13 @@
 <h3>Where are my cookies?</h3>
 
 <script>
-window.parent.postMessage("hello there!", "http://localhost:3001");
-
+  var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
-    alert("You've got cookies :)");
-  else
-    alert('Too bad :( No cookies for framed sites :(');
+    hasCookie = true
+window.parent.postMessage(hasCookie, "http://localhost:3001");
+
+  $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
 </script>
 </body>
 </html>
