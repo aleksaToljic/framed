@@ -13,7 +13,8 @@
 <script>
   function receiveMessage(event)
 {
-  console.log(event.source, event.source.location.ancestorOrigins[0], event)
+//   console.log(event.source, event.source.location.ancestorOrigins[0], event)
+  console.log('trebao je uci',event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
   if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
     return;
   else {
@@ -22,7 +23,7 @@
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
     hasCookie = true
-  window.parent.postMessage(hasCookie, event.origin);
+  window.parent.postMessage(hasCookie, event.source.location.ancestorOrigins[0]);
   }
 }
 window.addEventListener("message", receiveMessage, false);
