@@ -13,12 +13,10 @@
 <script>
   function receiveMessage(event)
 {
-//   console.log(event.source, event.source.location.ancestorOrigins[0], event)
-  console.log('trebao je uci',event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
+  // should be a list of whitelisted domains for security or just on every message send the cookie values (not recommended)
   if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
     return;
   else {
-  console.log(event)
   var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
