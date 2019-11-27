@@ -13,6 +13,7 @@
 <script>
   function receiveMessage(event)
 {
+  console.log(event)
   if (event.origin !== "http://localhost:3001")
     return;
   else {
