@@ -16,6 +16,19 @@
   if ($.cookie('the_cookie'))
     hasCookie = true
 window.parent.postMessage(hasCookie, "http://localhost:3001");
+  console.log('eo me iframe')
+  function receiveMessage(event)
+{
+  alert(event.toString())
+  // Do we trust the sender of this message?  (might be
+  // different from what we originally opened, for example).
+  if (event.origin !== "http://localhost:3001")
+    return;
+
+  // event.source is popup
+  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+}
+window.addEventListener("message", receiveMessage, false);
 </script>
 </body>
 </html>
