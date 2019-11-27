@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Framed Page</title>
+  <script src="//cdn.jsdelivr.net/g/jquery@1.11.0"></script>
+  <script src="//cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+</head>
+<body style="background-color: lightcoral;">
+<h2>This is the framed site</h2>
+<i>(http://vit-demos.appspot.com/framed.html)</i>
+<h3>Where are my cookies?</h3>
+
+<script>
+  $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
+  if ($.cookie('the_cookie'))
+    alert("You've got cookies :)");
+  else
+    alert('Too bad :( No cookies for framed sites :(');
+</script>
+</body>
+</html>
