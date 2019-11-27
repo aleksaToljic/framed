@@ -14,15 +14,11 @@
   function receiveMessage(event)
 {
   console.log(event)
-  if (event.origin !== "http://localhost:3001")
-    return;
-  else {
   var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
     hasCookie = true
-  window.parent.postMessage(hasCookie, event.origin);
-  }
+  window.source.postMessage(hasCookie, event.origin);
 }
 window.addEventListener("message", receiveMessage, false);
 </script>
