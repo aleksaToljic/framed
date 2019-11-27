@@ -11,8 +11,7 @@
 <h3>Where are my cookies?</h3>
 
 <script>
-var myEvent = new CustomEvent('my_event', { detail: {url: 'some url'} })
-window.parent.dispatchEvent(myEvent)
+window.parent.postMessage("hello there!", "http://localhost");
 
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
