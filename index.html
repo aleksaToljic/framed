@@ -16,8 +16,6 @@
   if ($.cookie('the_cookie'))
     hasCookie = true
 window.parent.postMessage(hasCookie, "http://localhost:3001");
-
-  $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
 </script>
 </body>
 </html>
