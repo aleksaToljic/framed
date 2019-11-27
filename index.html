@@ -14,7 +14,7 @@
   function receiveMessage(event)
 {
   console.log(event.source, event.source.location, event)
-  if(event && event.source.location.origin !== 'http://localhost:3001')
+  if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins !== 'http://localhost:3001')
     return;
   else {
   console.log(event)
