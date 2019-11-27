@@ -11,22 +11,17 @@
 <h3>Where are my cookies?</h3>
 
 <script>
+  function receiveMessage(event)
+{
+  if (event.origin !== "http://localhost:3001")
+    return;
+  else {
   var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
     hasCookie = true
-window.parent.postMessage(hasCookie, "http://localhost:3001");
-  console.log('eo me iframe')
-  function receiveMessage(event)
-{
-  console.log('eo me iframe',event.origin,event.source,event)
-  // Do we trust the sender of this message?  (might be
-  // different from what we originally opened, for example).
-  if (event.origin !== "http://localhost:3001")
-    return;
-
-  // event.source is popup
-  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+  window.parent.postMessage(hasCookie, event.origin);
+  }
 }
 window.addEventListener("message", receiveMessage, false);
 </script>
