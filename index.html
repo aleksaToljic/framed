@@ -11,21 +11,11 @@
 <h3>Where are my cookies?</h3>
 
 <script>
-  function receiveMessage(event)
-{
-  console.log(event)
-  // should be a list of whitelisted domains for security or just on every message send the cookie values (not recommended)
-  if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
-    return;
-  else {
-  var hasCookie = false;
+ var hasCookie = false;
   $.cookie('the_cookie', 'the_value',  { expires: 365, path: '/' }); // 1 year
   if ($.cookie('the_cookie'))
     hasCookie = true
-  window.parent.postMessage(hasCookie, event.source.location.ancestorOrigins[0]);
-  }
-}
-window.addEventListener("message", receiveMessage, false);
+window.parent.postMessage(hasCookie, "http://localhost:3001");
 </script>
 </body>
 </html>
