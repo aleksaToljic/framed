@@ -13,7 +13,7 @@
 <script>
   function receiveMessage(event)
 {
-  console.log('eh',event.data)
+  console.log('eh',event.data, event)
   // should be a list of whitelisted domains for security or just on every message send the cookie values (not recommended)
   if(event.source.location.ancestorOrigins.length && event.source.location.ancestorOrigins[0] !== 'http://localhost:3001')
     return;
